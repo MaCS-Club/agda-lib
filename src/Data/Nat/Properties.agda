@@ -20,13 +20,9 @@ open import Data.PropositionalEquality
 +-suc zero m = refl
 +-suc (suc n) m = cong suc (+-suc n m)
 
-+-comm : (a b : ℕ) → a + b ≡ b + a
++-comm : ∀ a b → a + b ≡ b + a
 +-comm zero b = sym(+-rightUnit b)
-+-comm (suc a) b = trans (cong suc (+-comm a b)) (+-suc b a)
-
-+-comm` : ∀ a b → a + b ≡ b + a
-+-comm` zero b = sym(+-rightUnit b)
-+-comm` (suc a) b = begin
++-comm (suc a) b = begin
     suc a + b   ≡⟨⟩
     suc (a + b) ≡⟨ cong suc (+-comm a b) ⟩
     suc (b + a) ≡⟨⟩

@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module Data.Nat where
 
 open import Data.Nat.Base public

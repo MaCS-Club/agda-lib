@@ -1,5 +1,5 @@
 {-# OPTIONS --without-K #-}
-module Examples.Category where
+module Examples.Category.Lecture-2 where
 
 open import Data.Category
 open import Data.PropositionalEquality
@@ -7,8 +7,8 @@ open import Data.Empty
 open import Data.Unit
 open import Data.Nat
 
-⊥-isCategory : Category
-⊥-isCategory = record {
+⊥-category : Category
+⊥-category = record {
     obj = ⊥;
     hom = λ _ _ → ⊥;
     _∘_ = λ ();
@@ -18,8 +18,8 @@ open import Data.Nat
     assoc = λ ()
   }
 
-⊤-isCategory : Category
-⊤-isCategory = record {
+⊤-category : Category
+⊤-category = record {
     obj = ⊤;
     hom = λ _ _ → ⊤;
     id = λ tt → tt;
@@ -28,8 +28,8 @@ open import Data.Nat
     assoc = λ _ _ _ → refl
   }
 
-ℕ-isCategory : Category
-ℕ-isCategory = record {
+ℕ-category : Category
+ℕ-category = record {
     obj = ⊤;
     hom = λ _ _ → ℕ;
     id = λ tt → 0;
@@ -39,8 +39,8 @@ open import Data.Nat
     assoc = +-assoc
   }
 
-Set-isCategory : Category
-Set-isCategory = record {
+Sets-category : Category
+Sets-category = record {
     obj = Set;
     hom = λ A B → (A → B);
     _∘_ = λ g f → (λ x → g(f x));
@@ -48,4 +48,12 @@ Set-isCategory = record {
     left-id = λ f → refl;
     right-id = λ f → refl;
     assoc = λ f g h → refl
+  }
+
+ℕ-to-⊤-functor : Functor (ℕ-category) (⊤-category)
+ℕ-to-⊤-functor = record {
+    omap = λ x → x;
+    fmap = λ _ → tt;
+    preserves-id = λ _ → refl;
+    preserves-comp = λ _ _ → refl
   }
