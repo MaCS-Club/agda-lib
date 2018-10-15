@@ -57,3 +57,11 @@ Sets-category = record {
     preserves-id = λ _ → refl;
     preserves-comp = λ _ _ → refl
   }
+
+ℕ-2×-functor : Functor (ℕ-category) (ℕ-category)
+ℕ-2×-functor = record {
+    omap = λ x → x;
+    fmap = λ x → 2 * x;
+    preserves-id = λ _ → refl;
+    preserves-comp = λ g f → *-distl 2 f g
+  }
