@@ -1,3 +1,4 @@
+{-# OPTIONS --without-K #-}
 module Data.Monoid.Base where
 
 open import Data.PropositionalEquality
