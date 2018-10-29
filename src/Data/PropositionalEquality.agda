@@ -1,21 +1,25 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --cubical #-}
 module Data.PropositionalEquality where
 
-infix 4 _≡_
+open import Cubical.Core
 
-data _≡_ {α}{A : Set α} : A → A → Set α where
-  refl : { x : A } → x ≡ x
+module _ {α}{A : Set α} where
+  refl : {x : A} → x ≡ x
+  refl {x = x} = λ _ → x
 
-{-# BUILTIN EQUALITY _≡_ #-}
+  sym : {x y : A} → x ≡ y → y ≡ x
+  sym p = λ i → p (~ i)
 
-cong : ∀ {α β}{A : Set α} {B : Set β}{x y : A} → (f : A → B) → x ≡ y → f x ≡ f y
-cong _ refl = refl
+  cong : ∀ {β} {B : A → Set β} {x y : A} (f : (a : A) → B a) (p : x ≡ y) → (λ i → B (p i)) [ f x ≡ f y ]
+  cong f p = λ i → f (p i)
 
-sym : ∀{α}{A : Set α} {x y : A} → x ≡ y → y ≡ x
-sym refl = refl
+  cong' : ∀ {α β} {A : Set α} {B : Set β} {x y : A} (f : A → B) (p : x ≡ y) → f x ≡ f y
+  cong' f p = λ i → f (p i)
 
-trans : ∀{α}{A : Set α} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
-trans refl refl = refl
+  compPath : {x y z : A} → x ≡ y → y ≡ z → x ≡ z
+  compPath {x = x} p q i =
+    hcomp (λ j → \ { (i = i0) → x
+                   ; (i = i1) → q j }) (p i)
 
 infix  3 _∎
 infixr 2 _≡⟨⟩_ _≡⟨_⟩_
@@ -28,7 +32,7 @@ _≡⟨⟩_ : ∀{α}{A : Set α} (x {y} : A) → x ≡ y → x ≡ y
 _ ≡⟨⟩ x≡y = x≡y
 
 _≡⟨_⟩_ : ∀ {α}{A : Set α}(x {y z} : A) → x ≡ y → y ≡ z → x ≡ z
-_ ≡⟨ x≡y ⟩ y≡z = trans x≡y y≡z
+_ ≡⟨ x≡y ⟩ y≡z = compPath x≡y y≡z
 
 _∎ : ∀ {α}{A : Set α}(x : A) → x ≡ x
 _∎ _ = refl

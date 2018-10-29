@@ -1,6 +1,7 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --cubical #-}
 module Examples.Category.Lecture-2 where
 
+open import Cubical.Core
 open import Agda.Primitive
 open import Data.Category
 open import Data.PropositionalEquality

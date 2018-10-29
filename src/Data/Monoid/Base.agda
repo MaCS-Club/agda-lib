@@ -1,6 +1,7 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --cubical #-}
 module Data.Monoid.Base where
 
+open import Cubical.Core
 open import Data.PropositionalEquality
 
 record Monoid {α} (A : Set α) : Set α where

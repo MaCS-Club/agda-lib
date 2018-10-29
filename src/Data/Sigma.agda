@@ -1,3 +1,4 @@
+{-# OPTIONS --cubical #-}
 module Data.Sigma where
 
 open import Agda.Primitive

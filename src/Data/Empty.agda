@@ -1,4 +1,4 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --cubical #-}
 module Data.Empty where
 
 data ⊥ : Set where

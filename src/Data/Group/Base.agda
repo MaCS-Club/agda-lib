@@ -1,7 +1,8 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --cubical #-}
 module Data.Group.Base where
 
 open import Data.PropositionalEquality
+open import Cubical.Core
 
 record Group {α} (A : Set α) : Set α where
   field

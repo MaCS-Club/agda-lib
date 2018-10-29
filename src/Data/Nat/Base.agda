@@ -1,4 +1,4 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --cubical #-}
 module Data.Nat.Base where
 
 data ℕ : Set where

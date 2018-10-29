@@ -1,6 +1,7 @@
-{-# OPTIONS --without-K #-}
+{-# OPTIONS --cubical #-}
 module Data.Category.Base where
 
+open import Cubical.Core
 open import Agda.Primitive
 open import Data.PropositionalEquality
 
