@@ -1,7 +1,8 @@
 {-# OPTIONS --cubical #-}
 module Data.PropositionalEquality where
 
-open import Cubical.Core
+open import Cubical.Core public
+open import Data.Sigma
 
 module _ {α}{A : Set α} where
   refl : {x : A} → x ≡ x
@@ -36,3 +37,6 @@ _ ≡⟨ x≡y ⟩ y≡z = compPath x≡y y≡z
 
 _∎ : ∀ {α}{A : Set α}(x : A) → x ≡ x
 _∎ _ = refl
+
+_=,=_ : ∀{α β} {A : Set α} {B : Set β} {a1 a2 : A} {b1 b2 : B} -> a1 ≡ a2 -> b1 ≡ b2 -> (a1 , b1) ≡ (a2 , b2)
+a1≡a2 =,= b1≡b2 = λ i → (a1≡a2 i , b1≡b2 i)

@@ -1,7 +1,6 @@
 {-# OPTIONS --cubical #-}
 module Data.Nat.Properties where
 
-open import Cubical.Core
 open import Data.Nat.Base
 open import Data.PropositionalEquality
 
